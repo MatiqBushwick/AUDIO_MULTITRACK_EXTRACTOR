@@ -109,7 +109,6 @@ for ((ch=0; ch<CHANNEL_COUNT; ch++)); do
         filter_complex+="[$i]channelmap=${ch}-0:mono[${ch}_${i}];"
     done
 
-
     # Build concatenation filters for each channel
     concat_inputs=""
     for ((i=0; i<num_chunks; i++)); do
@@ -123,6 +122,8 @@ for ((ch=0; ch<CHANNEL_COUNT; ch++)); do
     # Build output mapping
     map_args=()
     map_args+=(-map "[out${ch}]")
+    
+    count=$((ch+1))
 
     #DEBUG
     echo "ffmpeg '${input_args[@]}' -filter_complex '$full_filter' '${map_args[@]}' \
@@ -131,7 +132,7 @@ for ((ch=0; ch<CHANNEL_COUNT; ch++)); do
 
     # Run FFmpeg
     ffmpeg "${input_args[@]}" -filter_complex "$full_filter" "${map_args[@]}" \
-        -c:a pcm_s16le "${OUTPUT_PREFIX}${ch+1}.wav"
+        -c:a pcm_s16le "${OUTPUT_PREFIX}${count}.wav"
 
 done
 
