@@ -19,7 +19,7 @@ A powerful Bash script designed to easily extract and concatenate separate audio
 
 ## Installation
 
-1. Download the script file (`chunk_extract.sh`)
+1. Download the script file ['chunk_extract.sh'](https://github.com/MatiqBushwick/AUDIO_MULTITRACK_EXTRACTOR/raw/refs/heads/main/chunk_extract.sh)
 2. Make it executable:
    ```bash
    chmod +x chunk_extract.sh
