@@ -156,7 +156,7 @@ The script creates `log.txt` with:
 
 ## License
 
-Free to use and modify. Created by Koka.
+[GNU GPLv3](LICENSE) Created by MatiqBushwick.
 
 ## Contributing
 
