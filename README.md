@@ -19,10 +19,10 @@ A powerful Bash script designed to easily extract and concatenate separate audio
 
 ## Installation
 
-1. Download the script file (`audio_channel_extractor.sh`)
+1. Download the script file (`chunk_extract.sh`)
 2. Make it executable:
    ```bash
-   chmod +x audio_channel_extractor.sh
+   chmod +x chunk_extract.sh
    ```
 3. Ensure FFmpeg is installed:
    ```bash
@@ -40,7 +40,7 @@ A powerful Bash script designed to easily extract and concatenate separate audio
 
 ### Basic Usage
 ```bash
-./audio_channel_extractor.sh
+./chunk_extract.sh
 ```
 
 ### Step-by-Step Process
@@ -61,7 +61,7 @@ A powerful Bash script designed to easily extract and concatenate separate audio
 ### Input File Requirements
 
 - Files must have `.WAV` extension (uppercase)
-- Files should be named in a way that sorts correctly (e.g., `chunk1.WAV`, `chunk2.WAV`)
+- Files should be named in a way that sorts correctly (e.g., `00000001.WAV`, `00000002.WAV`)
 - Each file should contain the same number of channels
 - Files should be sequential parts of the same recording
 
@@ -99,7 +99,7 @@ OUTPUT_PREFIX="CH"        # Output file prefix
 ### FFmpeg Commands
 The script generates FFmpeg commands like:
 ```bash
-ffmpeg -i chunk1.WAV -i chunk2.WAV -filter_complex \
+ffmpeg -i 00000001.WAV -i chunk2.WAV -filter_complex \
 "[0]channelmap=0-0:mono[0_0];[1]channelmap=0-0:mono[0_1];\
 [0_0][0_1]concat=n=2:v=0:a=1[out0]" -map "[out0]" -c:a pcm_s16le CH1.wav
 ```
@@ -140,13 +140,13 @@ The script creates `log.txt` with:
 
 ### Basic Example
 ```bash
-./audio_channel_extractor.sh
+./chunk_extract.sh
 # Uses current directory, 32 channels, "CH" prefix
 ```
 
 ### Custom Configuration
 ```bash
-./audio_channel_extractor.sh
+./chunk_extract.sh
 # When prompted:
 # - Folder: /path/to/audio/chunks
 # - Channels: 16
